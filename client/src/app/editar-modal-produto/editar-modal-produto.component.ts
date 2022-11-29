@@ -5,10 +5,11 @@ import { HttpService } from 'src/services/http.service';
 
 export interface DialogDataProdutos {
   produtos: Array<any>;
-  id:number;
+  idproduto :number;
   FkGrupo:number;
   FkSubGrupo: number;
   FkColecao: number;
+
 }
 
 @Component({
@@ -17,20 +18,22 @@ export interface DialogDataProdutos {
   styleUrls: ['./editar-modal-produto.component.scss']
 })
 export class EditarModalProdutoComponent implements OnInit {
+
   public produto :Array<any> = [];
   description : string='';
   preco: number = 0;
-  id: any;
   original: Array<any> = [];
+
   constructor(private httpService : HttpService, @Inject(MAT_DIALOG_DATA) public data : DialogDataProdutos) { }
 
   ngOnInit(): void {
   }
 
   async editar(){
-    await this.httpService.put('produto',  {id : this.data.id, description : this.description, preco : this.preco});
+    await this.httpService.put('produto',  {idproduto : this.data.idproduto, description : this.description, preco : this.preco});
     this.listar();
   }
+
   async listar(){
     this.produto = await this.httpService.get('grupo');
     this.original = [];

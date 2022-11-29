@@ -66,7 +66,7 @@ knl.put('produto', async(req, resp) => {
         
         {description : req.body.description, preco : req.body.preco},
 
-        {where : { id : req.body.id}}
+        {where : { idproduto : req.body.idproduto}}
     )
     resp.json(result);
 });

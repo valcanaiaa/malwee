@@ -7,7 +7,7 @@ import { EditarModalProdutoComponent } from '../editar-modal-produto/editar-moda
 
 export interface DialogDataProdutos {
   produtos: Array<any>;
-  id:number;
+  idproduto : number;
   descricao: string;
   preco: number;
   FkGrupo:number;
@@ -20,31 +20,17 @@ export interface DialogDataProdutos {
   templateUrl: './produto.component.html',
   styleUrls: ['./produto.component.scss']
 })
+
 export class ProdutoComponent implements OnInit {
   produto : Array<any> = [];
   original : Array<any> = [];
   description : string='';
   filterTerm : string = '';
-  mostrar: boolean = false
-  mostrar2: boolean = false
-mostrar3: boolean = false
-  id: any;
-  name: any;
 
 constructor(private router : Router, private httpService : HttpService, public dialog : MatDialog) {}
 
   ngOnInit(): void {
     this.listar();
-  }
-
-  toggle () {
-    this.mostrar = !this.mostrar;
-  }
-  toggle2 () {
-    this.mostrar2 = !this.mostrar2;
-  }
-  toggle3 () {
-    this.mostrar3 = !this.mostrar3;
   }
 
   adicionarModalProduto(): void {
@@ -56,18 +42,16 @@ constructor(private router : Router, private httpService : HttpService, public d
     })
 }
 
-editarModalProduto(produto : any,Id : any, FkGrupo : any, FkSubGrupo : any, FkColecao : any) : void {
+editarModalProduto(produto : any, idproduto : any, FkGrupo : any, FkSubGrupo : any, FkColecao : any) : void {
   const modalRef = this.dialog.open(EditarModalProdutoComponent,{
     minWidth: '500px',
-    data: {produtos:produto,id : Id, FkGrupo : FkGrupo,FkSubGrupo : FkSubGrupo,FkColecao : FkColecao}
-
+    data: {produtos : produto, idproduto : idproduto, FkGrupo : FkGrupo,FkSubGrupo : FkSubGrupo,FkColecao : FkColecao}
 
   });
   modalRef.afterClosed().subscribe(result => {
     this.listar();
   })
 }
-
 
 async listar(){
   this.produto = await this.httpService.get('produto');
@@ -79,11 +63,6 @@ async adicionar(){
   console.log(this.description);
   this.produto = await this.httpService.post('produto', {description : this.description});
   console.log(this.produto);
-}
-
-async editar(){
-  await this.httpService.put('produto/',  {id : this.id, description : this.description});
-  this.listar();
 }
 
 async excluir(produto : any){
