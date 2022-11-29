@@ -1,0 +1,22 @@
+<div>
+<div id="modal" class="modal">
+    <input type="text" id="search-bar" placeholder="Editar">
+    <h2 mat-dialog-title>{{description}}</h2>
+
+    <mat-dialog-content>
+
+        <mat-form-field>
+            <input matInput
+                    placeholder="Editar"
+                    formControlName="produto">
+                  </mat-form-field>
+                  <mat-dialog-actions>
+                    <button class="mat-raised-button mat-primary"(click)="salvar()">salvar</button>
+                </mat-dialog-actions>
+    </mat-dialog-content>
+    
+</div>
+
+
+
+

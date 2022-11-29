@@ -1,0 +1,9 @@
+<mat-card-content>
+  <h2>Adicionar um produto</h2>
+  <mat-form-field>
+      <mat-label>Adicionar produto</mat-label>
+      <input matInput placeholder="digite aqui" [(ngModel)]="description">
+    </mat-form-field>
+    <br>
+    <button mat-raised-button color="primary" (click)="adicionar()">Adicionar</button>
+  </mat-card-content>

@@ -1,0 +1,50 @@
+<mat-card>
+  <div>
+    <div class="search-container">
+      <input type="text" id="search-bar" placeholder="Busca" [(ngModel)]="filterTerm" (input)="filtrar()">
+      <img class="search-icon" src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png">
+      <button  class="adicionar" mat-raised-button color="primary" (click)="adicionarModalGrupo()"><mat-icon>add</mat-icon></button>
+    </div>
+</div>
+<br>
+    <table>
+      <tr>
+        <th>ID</th>
+        <th>Grupo</th>
+        <th></th>
+      </tr>
+      <tr *ngFor="let grupo of grupos">
+        <td>{{grupo.id}}</td>
+        <td>{{grupo.description}}</td>
+        <td><button class="deletar" mat-raised-button color="primary" (click)="excluir(grupo)">EXCLUIR</button></td>
+        <td><button mat-raised-button color="primary" (click)="toggle2()">EDITAR</button></td>
+      </tr>
+    <!--ATE AQUI-->
+    </table>
+  </mat-card>
+
+
+<mat-card-content class="modal2" *ngIf="mostrar2">
+  <h2>Editar produto</h2>
+  <mat-form-field>
+    <mat-label>Editar produto</mat-label>
+    <input matInput placeholder="digite aqui" [(ngModel)]="description">
+  </mat-form-field>
+  <br>
+  <button  mat-raised-button color="primary" (click)="editar()">Salvar</button>
+</mat-card-content>
+
+<mat-card-content class="modal3" *ngIf="mostrar3">
+  <h2>Excluir um produto</h2>
+  <mat-form-field>
+      <mat-label>Excluir produto</mat-label>
+      <input matInput placeholder="digite aqui" [(ngModel)]="description">
+    </mat-form-field>
+    <br>
+    <button mat-raised-button color="primary" (click)="excluir(grupos)">Excluir</button>
+  </mat-card-content>
+
+
+
+
+

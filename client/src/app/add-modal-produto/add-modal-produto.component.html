@@ -1,0 +1,26 @@
+<mat-card-content>
+  <h2>Adicionar um produto</h2>
+  <mat-form-field>
+      <mat-label>Descrição produto</mat-label>
+      <input matInput placeholder="digite aqui" [(ngModel)]="description">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Preço do produto</mat-label>
+      <input matInput placeholder="digite aqui" [(ngModel)]="preco">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Fk Grupo</mat-label>
+      <input matInput placeholder="digite aqui" [(ngModel)]="FkGrupo">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Fk SubGrupo</mat-label>
+      <input matInput placeholder="digite aqui" [(ngModel)]="FkSubGrupo">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>FK Coleção</mat-label>
+      <input matInput placeholder="digite aqui" [(ngModel)]="FkColecao">
+    </mat-form-field>
+    <br>
+    <button mat-raised-button color="primary" (click)="adicionar()">Adicionar</button>
+  </mat-card-content>
+

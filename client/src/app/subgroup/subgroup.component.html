@@ -1,0 +1,46 @@
+<mat-card>
+  <div>
+  <div class="search-container">
+    <input type="text" id="search-bar" placeholder="Busca" [(ngModel)]="filterTerm" (input)="filtrar()">
+    <img class="search-icon" src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png">
+    <button  class="adicionar" mat-raised-button color="primary" (click)="toggle()"><mat-icon>add</mat-icon></button>
+  </div>
+  </div>
+<br>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>SubGrupo</th>
+        <th></th>
+    </tr>
+    <tr *ngFor="let subgrupo of Subgrupos">
+        <td>{{subgrupo.id}}</td>
+        <td>{{subgrupo.description}}</td>
+        <td><button class="deletar" mat-raised-button color="primary" (click)="excluir(subgrupo)">EXCLUIR</button></td>
+        <td><button mat-raised-button color="primary" (click)="toggle2()">EDITAR</button></td>
+    </tr>
+</table>
+</mat-card>
+<mat-card-content class="modal" *ngIf="mostrar">
+<h2>Adicionar um produto</h2>
+<mat-form-field>
+    <mat-label>Adicionar produto</mat-label>
+    <input matInput placeholder="digite aqui" [(ngModel)]="description">
+  </mat-form-field>
+  <br>
+  <button mat-raised-button color="primary" (click)="adicionar()">salvar</button>
+</mat-card-content>
+<mat-card-content class="modal2" *ngIf="mostrar2">
+<h2>Editar produto</h2>
+<mat-form-field>
+  <mat-label>Editar produto</mat-label>
+  <input matInput placeholder="digite aqui" [(ngModel)]="description">
+</mat-form-field>
+<br>
+<mat-form-field>
+  <mat-label>Id do produto</mat-label>
+  <input matInput placeholder="digite aqui" [(ngModel)]="id">
+</mat-form-field>
+<br>
+<button  mat-raised-button color="primary" (click)="editar()">SALVAR MUDANÇAS</button>
+</mat-card-content>
