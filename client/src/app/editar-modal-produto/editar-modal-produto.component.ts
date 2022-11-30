@@ -23,19 +23,22 @@ export class EditarModalProdutoComponent implements OnInit {
   description : string='';
   preco: number = 0;
   original: Array<any> = [];
+  Id: any;
 
   constructor(private httpService : HttpService, @Inject(MAT_DIALOG_DATA) public data : DialogDataProdutos) { }
 
   ngOnInit(): void {
+
   }
 
   async editar(){
+    debugger
     await this.httpService.put('produto',  {idproduto : this.data.idproduto, description : this.description, preco : this.preco});
     this.listar();
   }
 
   async listar(){
-    this.produto = await this.httpService.get('grupo');
+    this.produto = await this.httpService.get('produto');
     this.original = [];
     this.produto.forEach(element => this.original.push(element))
   }

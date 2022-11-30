@@ -8,7 +8,7 @@ module.exports = (sequelize) => {
             autoIncrement : true,
             allowNull : false
         },
-        Name : {
+        nomefantasia : {
             type : Sequelize.STRING(100),
             allowNull : false
         },
@@ -24,26 +24,7 @@ module.exports = (sequelize) => {
             type : Sequelize.INTEGER,
             allowNull : false
         },
-        estado : {
-            type : Sequelize.STRING(100),
-            allowNull : false
-        },
-        cidade : {
-            type : Sequelize.STRING(100),
-            allowNull : false
-        },
-        endereco : {
-            type : Sequelize.STRING(100),
-            allowNull : false
-        },
-        bairro : {
-            type : Sequelize.STRING(100),
-            allowNull : false
-        },
-        numero: {
-            type : Sequelize.STRING(100),
-            allowNull : false
-        },
+       
          status : {
             type : Sequelize.INTEGER,
             allowNull : false

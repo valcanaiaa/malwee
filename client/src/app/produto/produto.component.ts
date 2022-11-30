@@ -42,10 +42,11 @@ constructor(private router : Router, private httpService : HttpService, public d
     })
 }
 
-editarModalProduto(produto : any, idproduto : any, FkGrupo : any, FkSubGrupo : any, FkColecao : any) : void {
+editarModalProduto(produto : any) : void {
+  debugger
   const modalRef = this.dialog.open(EditarModalProdutoComponent,{
     minWidth: '500px',
-    data: {produtos : produto, idproduto : idproduto, FkGrupo : FkGrupo,FkSubGrupo : FkSubGrupo,FkColecao : FkColecao}
+    data: produto
 
   });
   modalRef.afterClosed().subscribe(result => {
@@ -66,7 +67,7 @@ async adicionar(){
 }
 
 async excluir(produto : any){
-  await this.httpService.patch('produto/' + produto.id,{});
+  await this.httpService.patch('produto/' + produto.idproduto,{});
   this.listar();
 }
 

@@ -32,18 +32,15 @@ knl.post('cliente', async(req, resp) => {
     resp.end();
 },securityConsts.USER_TYPE_PUBLIC);
 
-knl.get('cliente/:id', async(req, resp) => {
+knl.get('cliente', async(req, resp) => {
 
     const result = await knl.sequelize().models.cliente.findAll({
         where : {
-            id : req.params.id,
             status : 1
         }
     });
 
-    resp.json({
-        Client : result
-    }); 
+    resp.json(result); 
 });
 
 knl.patch('cliente/:id', async(req, resp) => {

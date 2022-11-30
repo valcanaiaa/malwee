@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpService } from 'src/services/http.service';
+import { AddModalClienteComponent } from '../add-modal-cliente/add-modal-cliente.component';
 
 @Component({
-  selector: 'app-cliente',
   templateUrl: './cliente.component.html',
-  styleUrls: ['./cliente.component.scss']
+  styleUrls: ['./cliente.component.scss'],
+  selector: 'cliente.component.modal',
 })
-export class ClienteComponent implements OnInit {
+
+export class ClienteComponent implements OnInit  {
+
   mostrar: Boolean = false
   mostrar2: Boolean = false
   mostrar3: Boolean = false
@@ -18,6 +21,7 @@ export class ClienteComponent implements OnInit {
   filterTerm : string = '';
   id: any;
   description: any;
+  dialog: any;
 
   constructor(private router : Router, private httpService : HttpService) { }
 
@@ -25,18 +29,24 @@ export class ClienteComponent implements OnInit {
     this.listar();
   }
 
-toggle () {
-  this.mostrar = !this.mostrar;
+filtrar() {
+  this.cliente = this.original.filter((element : any) => {
+    return String(element.description).toUpperCase().includes(this.filterTerm.toUpperCase());
+  })
 }
-toggle2 () {
-  this.mostrar2 = !this.mostrar2;
+
+adicionarModalCliente(): void {
+  const modalRef = this.dialog.open(AddModalClienteComponent,{
+    minWidth: '500px'
+  });
+  modalRef.afterClosed().subscribe((result : any) => {
+    this.listar();
+  })
 }
-toggle3 () {
-  this.mostrar3 = !this.mostrar3;
-}
+
  async adicionar(){
    console.log(this.fantasyName);
-   this.cliente= await this.httpService.post('cliente', {fantasyName : this.fantasyName});
+   this.cliente = await this.httpService.post('cliente', {fantasyName : this.fantasyName});
    console.log(this.cliente);
 }
 

@@ -1,1 +1,25 @@
-<p>add-modal-cliente works!</p>
+
+    <mat-tab-group>
+      <h2>Adicionar cliente</h2>
+      <mat-tab label="Adicionar">
+
+        <mat-form-field>
+          <mat-label>Nome fantasia</mat-label>
+          <input matInput placeholder="digite aqui" [(ngModel)]="nomefantasia">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Cnpj</mat-label>
+          <input matInput placeholder="digite aqui" [(ngModel)]="cnpj">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>razaosocial</mat-label>
+          <input matInput placeholder="digite aqui" [(ngModel)]="razaosocial">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>clientedesde</mat-label>
+          <input matInput placeholder="digite aqui" [(ngModel)]="clientedesde">
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="adicionar()">Adicionar</button>
+      </mat-tab>
+      <mat-tab label="Second"> Cadastro do cliente </mat-tab>
+    </mat-tab-group>

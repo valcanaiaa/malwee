@@ -1,7 +1,32 @@
 
 <div>
-  <h1>Cadastro</h1>
-  <label for="firstname">Nome</label>
-  <input id="firstname" type="text" name="firstname" placeholder="Digite aqui" required>
+  <h1>Faça seu Cadastro</h1>
+  <div>
+    <div class="search-container">
+      <input type="text" id="search-bar" placeholder="Busca" [(ngModel)]="filterTerm" (input)="filtrar()">
+      <img class="search-icon" src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png">
+      <button  class="adicionar" mat-raised-button color="primary" (click)="adicionarModalCliente()"><mat-icon>add</mat-icon></button>
+    </div>
+</div>
+<br>
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Nome</th>
+    <th>Cnpj</th>
+    <th>Razão Social</th>
+    <th>Cliente desde</th>
+  </tr>
+  <tr *ngFor="let cliente of cliente">
+    <td>{{cliente.id}}</td>
+    <td>{{cliente.nomefantasia}}</td>
+    <th>{{cliente.cnpj}}</th>
+    <th>{{cliente.razaosocial}}</th>
+    <th>{{cliente.clientedesde}}</th>
+
+    <td><button class="deletar" mat-raised-button color="primary" (click)="excluir(cliente)">EXCLUIR</button></td>
+    <td><button mat-raised-button color="primary" >EDITAR</button></td>
+  </tr>
+</table>
 </div>
 

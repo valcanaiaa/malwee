@@ -1,55 +1,108 @@
-// form {
-//   font-family: Verdana,Tahoma,sans-serif;
-//   font-size: 15px;
-//   background-color: #ffffff;
-//   max-width: 500px;
-// }
+div{
+  padding-top: 30px;
+}
 
-// h1 {
-//   margin-bottom: 20px;
-//   margin-left: 20px;
-//   color: #000707;
-//   text-shadow: 5px 5px 5px black;
-// }
+.search-container{
+  width: 490px;
+  display: block;
+  margin:  auto;
+}
 
-// input, textarea {
-//   width: 200px;
-//   padding: 10px;
-//   color: black;
-//   margin-left: 20px;
-//   margin-top: 10px;
-//   border: 1px solid;
-// }
+input#search-bar{
+  margin: 0 auto;
+  width: 100%;
+  height: 45px;
+  padding: 0 20px;
+  font-size: 1rem;
+  border: 1px solid #D0CFCE;
+  outline: none;
+  &:focus{
+    border: 1px solid #000000;
+    transition: 0.35s ease;
+    color: #000000;
+    &::-webkit-input-placeholder{
+      transition: opacity 0.45s ease;
+  	  opacity: 0;
+     }
+    &::-moz-placeholder {
+      transition: opacity 0.45s ease;
+  	  opacity: 0;
+     }
+    &:-ms-placeholder {
+     transition: opacity 0.45s ease;
+  	 opacity: 0;
+     }
+   }
+ }
 
-// input:hover, textarea:hover, input:focus, textarea:focus {
-//   border-color: #000066;
-//   box-shadow: 5px 0px 9px #FFFF00;
-//   background-color: rgb(68, 10, 145);
-//   color: black;
-//   font-weight: bold;
-// }
+.search-icon{
+  position: relative;
+  float: right;
+  width: 75px;
+  height: 75px;
+  top: -62px;
+  right: -45px;
+}
 
-// .adicionar {
-//   background-color: rgb(68, 10, 145);
-//   height: 40px;
-//   width: 100px;
-//   font-weight: bold;
-//   border-radius: 5px;
-//   -webkit-border-radius: 5px;
-//   -moz-border-radius: 5px;
-//   border: 1px solid;
-//   color: black;
-// }
 
-// textarea {
-//   width: 400px;
-//   height: 120px;
-//   line-height: 20px;
-//   max-width: 400px;
-// }
+tr:hover{
+  background-color: gray;
+}
 
-// form label {
-//   margin-left: 20px;
-//   color: #FFFFFF;
-//   font-weight: bold;
-// }
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td {
+  text-align: center;
+}
+.deletar {
+  border: rgb(68, 10, 145);
+  display: block;
+  float: right;
+  margin-right: 1rem;
+}
+.editar {
+ border:  rgb(68, 10, 145);
+ margin-left: auto;
+ margin-top: 1em;
+}
+.adicionar {
+  border: rgb(68, 10, 145);
+  float: right;
+  margin-right: 1rem;
+}
+.modal {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px #333;
+  min-width: 320px;
+  min-height: 300px;
+  position: fixed;
+  left: 50%;
+  padding: 24px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 11;
+}
+.modal2 {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px #333;
+  min-width: 320px;
+  min-height: 300px;
+  position: fixed;
+  left: 50%;
+  padding: 24px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 11;
+}
+.Cancelar {
+  border: rgb(68, 10, 145);
+  display: block;
+  float: right;
+  margin-right: 1rem;
+}
+
