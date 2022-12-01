@@ -28,6 +28,7 @@ import { AddModalColecaoComponent } from './add-modal-colecao/add-modal-colecao.
 import { AddModalProdutoComponent } from './add-modal-produto/add-modal-produto.component';
 import { AddModalUsuarioComponent } from './add-modal-usuario/add-modal-usuario.component';
 import { EditarModalProdutoComponent } from './editar-modal-produto/editar-modal-produto.component';
+import { ExcluirmodalprodutoComponent } from './excluirmodalproduto/excluirmodalproduto.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { EditarModalProdutoComponent } from './editar-modal-produto/editar-modal
     AddModalColecaoComponent,
     AddModalProdutoComponent,
     AddModalUsuarioComponent,
-    EditarModalProdutoComponent
+    EditarModalProdutoComponent,
+    ExcluirmodalprodutoComponent
   ],
   imports: [
     RoutesModule,

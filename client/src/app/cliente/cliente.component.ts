@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { HttpService } from 'src/services/http.service';
 import { AddModalClienteComponent } from '../add-modal-cliente/add-modal-cliente.component';
@@ -21,9 +22,9 @@ export class ClienteComponent implements OnInit  {
   filterTerm : string = '';
   id: any;
   description: any;
-  dialog: any;
 
-  constructor(private router : Router, private httpService : HttpService) { }
+
+  constructor(private router : Router, private httpService : HttpService, public dialog : MatDialog) { }
 
   ngOnInit(): void {
     this.listar();

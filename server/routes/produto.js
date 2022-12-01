@@ -46,22 +46,18 @@ knl.get('produto', async(req, resp) => {
 });
 
 knl.patch('produto/:id', async(req, resp) => {
+    console.log(req.body);
     const result = await knl.sequelize().models.produto.update(
         { status : 2 },
         
-        { where : { id : req.params.id } })
+        { where : { idproduto : req.params.id } })
         
     resp.json(result);
     resp.end();
 });
 
 knl.put('produto', async(req, resp) => {
-    const schema = Joi.object({
-        description : Joi.string().min(1).max(100).required(),
-        preco : Joi.string().min(1).required()
-    })
-    knl.validate(req.body, schema);
-    
+    console.log(req.body)
     const result = await knl.sequelize().models.produto.update(
         
         {description : req.body.description, preco : req.body.preco},

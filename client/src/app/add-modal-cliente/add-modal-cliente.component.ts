@@ -11,7 +11,15 @@ export class AddModalClienteComponent implements OnInit {
   cnpj : string = '';
   razaosocial : string = '';
   clientedesde : string = '';
-  
+cep: any;
+pais: any;
+estado: any;
+cidade: any;
+bairro: any;
+rua: any;
+numero: any;
+complemento: any;
+
   constructor(private httpService : HttpService) { }
 
   ngOnInit(): void {

@@ -14,10 +14,10 @@
         <th>Preço</th>
         <td>FK Grupo</td>
         <td>FK SubGrupo</td>
-        <td>FK Colecão</td>
+        <td>FK Coleção</td>
         <th></th>
       </tr>
-      <tr *ngFor="let produto of produto">
+      <tr *ngFor="let produto of produtos">
         <td>{{produto.idproduto}}</td>
         <td>{{produto.description}}</td>
         <td>{{produto.preco}}</td>
@@ -25,7 +25,7 @@
         <td>{{produto.FkSubGrupo}}</td>
         <td>{{produto.FkColecao}}</td>
         <td><button class="deletar" mat-raised-button color="primary" (click)="excluir(produto)">EXCLUIR</button></td>
-        <td><button mat-raised-button color="primary" (click)="editarModalProduto(produto)">EDITAR</button></td>
+        <td><button mat-raised-button color="primary" (click)="editarModalProduto(produto, produto.idproduto, produto.FkGrupo, produto.FkSubGrupo, produto.FkColecao)">EDITAR</button></td>
       </tr>
     <!--ATE AQUI-->
     </table>

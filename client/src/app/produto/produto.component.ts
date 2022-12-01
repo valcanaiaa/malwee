@@ -22,7 +22,7 @@ export interface DialogDataProdutos {
 })
 
 export class ProdutoComponent implements OnInit {
-  produto : Array<any> = [];
+  produtos : Array<any> = [];
   original : Array<any> = [];
   description : string='';
   filterTerm : string = '';
@@ -42,11 +42,10 @@ constructor(private router : Router, private httpService : HttpService, public d
     })
 }
 
-editarModalProduto(produto : any) : void {
-  debugger
+editarModalProduto(produto : any, idproduto : any, FkGrupo : any, FkSubGrupo : any, FkColecao : any) : void {
   const modalRef = this.dialog.open(EditarModalProdutoComponent,{
     minWidth: '500px',
-    data: produto
+    data: {produtos: produto, idproduto : idproduto, FkGrupo : FkGrupo, FkSubGrupo : FkSubGrupo, FkColecao : FkColecao}
 
   });
   modalRef.afterClosed().subscribe(result => {
@@ -55,15 +54,15 @@ editarModalProduto(produto : any) : void {
 }
 
 async listar(){
-  this.produto = await this.httpService.get('produto');
+  this.produtos = await this.httpService.get('produto');
   this.original = [];
-  this.produto.forEach(element => this.original.push(element))
+  this.produtos.forEach(element => this.original.push(element))
 }
 
 async adicionar(){
   console.log(this.description);
-  this.produto = await this.httpService.post('produto', {description : this.description});
-  console.log(this.produto);
+  this.produtos = await this.httpService.post('produto', {description : this.description});
+  console.log(this.produtos);
 }
 
 async excluir(produto : any){
@@ -72,7 +71,7 @@ async excluir(produto : any){
 }
 
 filtrar(){
-  this.produto = this.original.filter((element : any) => {
+  this.produtos = this.original.filter((element : any) => {
     return String(element.description).toUpperCase().includes(this.filterTerm.toUpperCase());
   })
 }

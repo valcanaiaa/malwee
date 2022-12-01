@@ -1,8 +1,7 @@
 
     <mat-tab-group>
       <h2>Adicionar cliente</h2>
-      <mat-tab label="Adicionar">
-
+      <mat-tab label="Cadastro">
         <mat-form-field>
           <mat-label>Nome fantasia</mat-label>
           <input matInput placeholder="digite aqui" [(ngModel)]="nomefantasia">
@@ -12,14 +11,49 @@
           <input matInput placeholder="digite aqui" [(ngModel)]="cnpj">
         </mat-form-field>
         <mat-form-field>
-          <mat-label>razaosocial</mat-label>
+          <mat-label>razão social</mat-label>
           <input matInput placeholder="digite aqui" [(ngModel)]="razaosocial">
         </mat-form-field>
         <mat-form-field>
-          <mat-label>clientedesde</mat-label>
+          <mat-label>cliente desde</mat-label>
           <input matInput placeholder="digite aqui" [(ngModel)]="clientedesde">
         </mat-form-field>
         <button mat-raised-button color="primary" (click)="adicionar()">Adicionar</button>
       </mat-tab>
-      <mat-tab label="Second"> Cadastro do cliente </mat-tab>
+      <mat-tab label="Documentos">
+        <mat-form-field>
+          <mat-label>Cep</mat-label>
+          <input matInput placeholder="digite aqui" [(ngModel)]="cep">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>País</mat-label>
+          <input matInput placeholder="digite aqui" [(ngModel)]="pais">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Estado</mat-label>
+          <input matInput placeholder="digite aqui" [(ngModel)]="estado">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Cidade</mat-label>
+          <input matInput placeholder="digite aqui" [(ngModel)]="cidade">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Bairro</mat-label>
+          <input matInput placeholder="digite aqui" [(ngModel)]="bairro">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Rua</mat-label>
+          <input matInput placeholder="digite aqui" [(ngModel)]="rua">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Número</mat-label>
+          <input matInput placeholder="digite aqui" [(ngModel)]="numero">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Complemento</mat-label>
+          <input matInput placeholder="digite aqui" [(ngModel)]="complemento">
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="adicionar()">Adicionar</button>
+      </mat-tab>
     </mat-tab-group>
+
