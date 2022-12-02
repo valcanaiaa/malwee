@@ -1,0 +1,13 @@
+<mat-card-content>
+  <h2>Editar um cliente</h2>
+  <h3>Nome fantasia</h3>
+  <mat-form-field>
+    <input matInput placeholder="digite aqui" [(ngModel)]="nomefantasia">
+  </mat-form-field>
+  <h3>Razão Social</h3>
+  <mat-form-field>
+    <input matInput placeholder="digite aqui" [(ngModel)]="razaosocial">
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="editar()">Editar</button>
+
+</mat-card-content>

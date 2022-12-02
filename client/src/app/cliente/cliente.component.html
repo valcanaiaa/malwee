@@ -20,9 +20,9 @@
   <tr *ngFor="let cliente of cliente">
     <td>{{cliente.id}}</td>
     <td>{{cliente.nomefantasia}}</td>
-    <th>{{cliente.cnpj}}</th>
-    <th>{{cliente.razaosocial}}</th>
-    <th>{{cliente.clientedesde}}</th>
+    <td>{{cliente.cnpj}}</td>
+    <td>{{cliente.razaosocial}}</td>
+    <td>{{cliente.clientedesde}}</td>
 
     <td><button class="deletar" mat-raised-button color="primary" (click)="excluir(cliente)">EXCLUIR</button></td>
     <td><button mat-raised-button color="primary" >EDITAR</button></td>

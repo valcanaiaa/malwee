@@ -26,7 +26,8 @@ complemento: any;
   }
 
   async adicionar(){
-    this.cliente = await this.httpService.post('cliente', {});
+    this.cliente = await this.httpService.post('cliente', {nomefantasia : this.nomefantasia,cnpj : this.cnpj,
+      razaosocial : this.razaosocial,clientedesde : this.clientedesde});
     console.log(this.cliente);
   }
 

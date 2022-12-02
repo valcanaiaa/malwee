@@ -4,27 +4,30 @@ const securityConsts = require('../consts/security-consts');
 
 knl.post('cliente', async(req, resp) => {
     const schema = Joi.object({
-        fantasyName : Joi.string().min(1).max(100).required(),
-        cnpj : Joi.number().min(14).max(14).required(),
-        socialreason : Joi.string().min(1).max(200).required(),
-        customerSince : Joi.date().required()
+        nomefantasia : Joi.string().min(1).max(100).required(),
+        cnpj : Joi.string().min(14).max(14).required(),
+        razaosocial : Joi.string().min(1).max(200).required(),
+        clientedesde : Joi.date().required()
     })
 
     knl.validate(req.body, schema);
 
-    const result = await knl.sequelize().models.client.findAll({
+    const result = await knl.sequelize().models.cliente.findAll({
         where : {
-            fantasyName : req.body.fantasyName
+            nomefantasia : req.body.nomefantasia,
+            cnpj : req.body.cnpj,
+        razaosocial : req.body.razaosocial,
+        clientedesde : req.body.clientedesde
         }
     });
 
     knl.createException('006', '', !knl.objects.isEmptyArray(result));
 
     const group = knl.sequelize().models.cliente.build({
-        fantasyName : req.body.description,
+        nomefantasia : req.body.nomefantasia,
         cnpj : req.body.cnpj,
-        socialreason : req.body.company,
-        customersince : req.body.customersince,
+        razaosocial : req.body.razaosocial,
+        clientedesde : req.body.clientedesde,
         status : 1
     });
 
