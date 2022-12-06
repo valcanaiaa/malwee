@@ -21,7 +21,7 @@ module.exports = (sequelize) => {
             allowNull : true,
         },
         clientedesde : {
-            type : Sequelize.INTEGER,
+            type : Sequelize.DATE(),
             allowNull : false
         },
        

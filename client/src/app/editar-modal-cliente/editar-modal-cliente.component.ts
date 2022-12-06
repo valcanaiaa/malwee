@@ -7,6 +7,7 @@ export interface DialogDataCliente {
   cliente : Array<any>;
   nomefantasia: any;
 razaosocial: any;
+id : number;
 }
 
 @Component({
@@ -20,6 +21,7 @@ nomefantasia: any;
 razaosocial: any;
   original: Array<any> = [];
   dialog: any;
+  filterTerm: any;
 
   constructor(private httpService : HttpService, @Inject(MAT_DIALOG_DATA) public data : DialogDataCliente){ }
 
@@ -27,18 +29,8 @@ razaosocial: any;
     this.cliente.push(this.data.cliente);
   }
 
-  editarModalCliente(): void {
-    const modalRef = this.dialog.open(EditarModalClienteComponent,{
-      minWidth: '500px'
-    });
-    modalRef.afterClosed().subscribe((result : any) => {
-      this.listar();
-    })
-  }
-
   async editar(){
-
-    this.cliente = await this.httpService.put('cliente', {nomefantasia : this.nomefantasia,razaosocial :this.razaosocial});
+ await this.httpService.put('cliente', {nomefantasia : this.nomefantasia,razaosocial :this.razaosocial, id: this.data.id});
     this.listar();
   }
 
@@ -46,5 +38,11 @@ razaosocial: any;
     this.cliente = await this.httpService.get('cliente');
     this.original = [];
     this.cliente.forEach(element => this.original.push(element))
+  }
+
+  filtrar() {
+    this.cliente = this.original.filter((element : any) => {
+      return String(element.description).toUpperCase().includes(this.filterTerm.toUpperCase());
+    })
   }
 }

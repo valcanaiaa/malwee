@@ -3,12 +3,24 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { HttpService } from 'src/services/http.service';
 import { AddModalClienteComponent } from '../add-modal-cliente/add-modal-cliente.component';
+import { EditarModalClienteComponent } from '../editar-modal-cliente/editar-modal-cliente.component';
+import { EditarModalProdutoComponent } from '../editar-modal-produto/editar-modal-produto.component';
+
+const moment = require('moment');
+
+export interface DialogDataCliente {
+  cliente : Array<any>;
+  id : number;
+  razaosocial:string;
+  nomefantasia:string;
+}
 
 @Component({
   templateUrl: './cliente.component.html',
   styleUrls: ['./cliente.component.scss'],
   selector: 'cliente.component.modal',
 })
+
 
 export class ClienteComponent implements OnInit  {
 
@@ -44,6 +56,15 @@ adicionarModalCliente(): void {
     this.listar();
   })
 }
+editarModalCliente(cliente : any, id :any, razaodocial: any, nomrfantasia: any ) : void {
+  const modalRef = this.dialog.open(EditarModalClienteComponent,{
+    minWidth: '500px',
+data: {cliente: cliente,id: id, razaodocial: razaodocial,nomefantasia:nomrfantasia}
+  });
+  modalRef.afterClosed().subscribe(result => {
+    this.listar();
+  })
+}
 
  async adicionar(){
    console.log(this.fantasyName);
@@ -55,6 +76,12 @@ async listar(){
   this.cliente = await this.httpService.get('cliente');
   this.original = [];
   this.cliente.forEach(element => this.original.push(element))
+
+  this.cliente.forEach(element => {
+
+    console.log(element.createdAt);
+    element.clientedesde_str = moment(element.createdAt).format('DD/MM/YYYY');
+  })
 }
 
 async editar(){

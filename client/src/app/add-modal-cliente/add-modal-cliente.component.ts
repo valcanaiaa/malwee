@@ -19,6 +19,7 @@ bairro: any;
 rua: any;
 numero: any;
 complemento: any;
+startDate : Date = new Date();
 
   constructor(private httpService : HttpService) { }
 
@@ -27,7 +28,7 @@ complemento: any;
 
   async adicionar(){
     this.cliente = await this.httpService.post('cliente', {nomefantasia : this.nomefantasia,cnpj : this.cnpj,
-      razaosocial : this.razaosocial,clientedesde : this.clientedesde});
+      razaosocial : this.razaosocial,clientedesde : this.startDate});
     console.log(this.cliente);
   }
 

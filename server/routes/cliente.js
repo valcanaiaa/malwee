@@ -5,9 +5,9 @@ const securityConsts = require('../consts/security-consts');
 knl.post('cliente', async(req, resp) => {
     const schema = Joi.object({
         nomefantasia : Joi.string().min(1).max(100).required(),
-        cnpj : Joi.string().min(14).max(14).required(),
+        cnpj : Joi.string().min(12).max(18).required(),
         razaosocial : Joi.string().min(1).max(200).required(),
-        clientedesde : Joi.date().required()
+        clientedesde : Joi.date().raw().required()
     })
 
     knl.validate(req.body, schema);
@@ -58,14 +58,13 @@ knl.patch('cliente/:id', async(req, resp) => {
     });
 });
 
-knl.put('cliente/:id', async(req, resp) => {
+knl.put('cliente', async(req, resp) => {
     const result = await knl.sequelize().models.cliente.update(
 
-        {description : Joi.string().min(1).max(200).required()},
+        { nomefantasia : req.body.nomefantasia,
+        razaosocial : req.body.razaosocial},
 
-        {where : { id : req.params.id}}
+        {where : { id : req.body.id}}
     )
-    resp.json({
-        Client : result
-    });
+    resp.json(result);
 });

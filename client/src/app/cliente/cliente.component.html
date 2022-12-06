@@ -22,10 +22,10 @@
     <td>{{cliente.nomefantasia}}</td>
     <td>{{cliente.cnpj}}</td>
     <td>{{cliente.razaosocial}}</td>
-    <td>{{cliente.clientedesde}}</td>
+    <td>{{cliente.clientedesde_str}}</td>
 
     <td><button class="deletar" mat-raised-button color="primary" (click)="excluir(cliente)">EXCLUIR</button></td>
-    <td><button mat-raised-button color="primary" >EDITAR</button></td>
+    <td><button mat-raised-button color="primary" (click)="editarModalCliente(cliente,cliente.id, cliente.razaosocial, cliente.nomefantasia)">EDITAR</button></td>
   </tr>
 </table>
 </div>
