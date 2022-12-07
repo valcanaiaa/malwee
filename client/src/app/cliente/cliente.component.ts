@@ -1,3 +1,4 @@
+import { Breakpoints } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
@@ -78,9 +79,8 @@ async listar(){
   this.cliente.forEach(element => this.original.push(element))
 
   this.cliente.forEach(element => {
-
-    console.log(element.createdAt);
-    element.clientedesde_str = moment(element.createdAt).format('DD/MM/YYYY');
+    console.log(element);
+    element.clientedesde_str = moment(element.clientedesde).format('DD/MM/YYYY');
   })
 }
 

@@ -10,7 +10,6 @@ export class AddModalClienteComponent implements OnInit {
   nomefantasia : string = '';
   cnpj : string = '';
   razaosocial : string = '';
-  clientedesde : string = '';
 cep: any;
 pais: any;
 estado: any;
@@ -19,7 +18,7 @@ bairro: any;
 rua: any;
 numero: any;
 complemento: any;
-startDate : Date = new Date();
+startDate : Date = new Date(2022,1,1);
 
   constructor(private httpService : HttpService) { }
 
@@ -29,6 +28,13 @@ startDate : Date = new Date();
   async adicionar(){
     this.cliente = await this.httpService.post('cliente', {nomefantasia : this.nomefantasia,cnpj : this.cnpj,
       razaosocial : this.razaosocial,clientedesde : this.startDate});
+    console.log(this.cliente);
+  }
+
+  async adicionardocumnto(){
+    this.cliente = await this.httpService.post('cliente', {cep : this.cep,pais : this. pais,
+      estado : this.estado,cidade : this.cidade, rua : this.rua,
+       numero: this.numero,complemento : this.complemento});
     console.log(this.cliente);
   }
 
