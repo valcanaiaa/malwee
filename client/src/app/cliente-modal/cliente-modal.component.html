@@ -1,0 +1,47 @@
+
+
+
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Dados do cliente</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-form-field>
+      <mat-label>CNPJ</mat-label>
+      <input matInput placeholder="digite aqui" [(ngModel)]="cliente.cnpj">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Nome fantasia</mat-label>
+      <input matInput placeholder="digite aqui" [(ngModel)]="cliente.nomefantasia">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Razão Social</mat-label>
+      <input matInput placeholder="digite aqui" [(ngModel)]="cliente.razaosocial">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Cliente Desde</mat-label>
+      <input type="date" matInput placeholder="digite aqui" [(ngModel)]="cliente.clientedesde">
+    </mat-form-field>
+
+    <div><button mat-raised-button color="primary"(click)="addEndereco()">Adicionar</button></div>
+
+    <mat-card>
+      <mat-card-content>
+        <div *ngFor="let element of cliente.enderecos">
+          <span>{{element.bairro}}</span>--
+          <span>{{element.rua}}</span>
+          --
+          <span>{{element.numero}}</span>
+
+          <button mat-raised-button color="primary" (click)="editEndereco(element)">Editar</button>
+          <button mat-raised-button color="primary" (click)="excluirEndereco(element)">Excluir</button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button mat-raised-button color="primary" (click)="cancelar()">Cancelar</button>
+    <button mat-raised-button color="primary"(click)="salvar()">Salvar</button>
+  </mat-card-actions>
+</mat-card>

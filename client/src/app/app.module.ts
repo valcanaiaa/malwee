@@ -31,6 +31,8 @@ import { EditarModalProdutoComponent } from './editar-modal-produto/editar-modal
 import { ExcluirmodalprodutoComponent } from './excluirmodalproduto/excluirmodalproduto.component';
 import { EditarModalClienteComponent } from './editar-modal-cliente/editar-modal-cliente.component';
 import { ExcluirModalClienteComponent } from './excluir-modal-cliente/excluir-modal-cliente.component';
+import { ClienteModalComponent } from './cliente-modal/cliente-modal.component';
+import { EnderecoModalComponent } from './endereco-modal/endereco-modal.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,9 @@ import { ExcluirModalClienteComponent } from './excluir-modal-cliente/excluir-mo
     EditarModalProdutoComponent,
     ExcluirmodalprodutoComponent,
     EditarModalClienteComponent,
-    ExcluirModalClienteComponent
+    ExcluirModalClienteComponent,
+    ClienteModalComponent,
+    EnderecoModalComponent
   ],
   imports: [
     RoutesModule,

@@ -1,62 +1,66 @@
 const Joi = require('joi');
 const knl = require('../knl');
 const securityConsts = require('../consts/security-consts');
+const { custom } = require('joi');
 
 knl.post('cliente', async(req, resp) => {
     const schema = Joi.object({
+        cnpj         : Joi.string().min(11).max(14).required(),
+        razaosocial  : Joi.string().min(1).max(100).required(),
         nomefantasia : Joi.string().min(1).max(100).required(),
-        cnpj : Joi.string().min(1).max(14).required(),
-        razaosocial : Joi.string().min(1).max(200).required(),
-        clientedesde : Joi.date().raw().required(),
-        cep : Joi.string().min(1).max(8).required(),
-        pais: Joi.string().min(1).max(100).required(),
-        estado: Joi.string().min(1).max(2).required(),
-        cidade: Joi.string().min(1).max(100).required(),
-        bairro: Joi.string().min(1).max(100).required(),
-        rua: Joi.string().min(1).max(100).required(),
-        numero: Joi.string().min(1).max(100).required(),
-        complemento: Joi.string().min(1).max(100).required(),
-
+        clientedesde : Joi.string().min(10).max(10).allow(''),
+        enderecos : Joi.array().items(Joi.object({
+            cep : Joi.string().min(8).max(8).allow(''),
+            pais : Joi.string().min(1).max(100).required(),
+            estado : Joi.string().min(1).max(100).required(),
+            cidade : Joi.string().min(1).max(100).required(),
+            bairro : Joi.string().min(1).max(100).required(),
+            rua : Joi.string().min(1).max(100).required(),
+            numero : Joi.string().min(1).max(14).required(),
+            complemento : Joi.string().min(1).max(100).allow('')
+        }))
     })
 
     knl.validate(req.body, schema);
 
-    const result = await knl.sequelize().models.cliente.findAll({
-        where : {
-            nomefantasia : req.body.nomefantasia,
-            cnpj : req.body.cnpj,
-             razaosocial : req.body.razaosocial,
-            clientedesde : req.body.clientedesde,
-            cep  : req.body.cep,
-            pais : req.body.pais,
-            estado : req.body.estado,
-            cidade : req.body.cidade,
-            bairro : req.body.bairro,
-            rua : req.body.rua,
-            numero : req.body.numero,
-            complemento : req.body.complemento
-        }
+    // Salvando os dados do cliente
+    //--------------------------------------------------------------------------------------------------
+    const cliente = knl.sequelize().models.cliente.build({
+        cnpj           : req.body.cnpj, 
+        razaosocial    : req.body.razaosocial,
+        nomefantasia   : req.body.nomefantasia,
+        clientedesde   : new Date(),
+        status         : 1, 
     });
 
-    knl.createException('006', '', !knl.objects.isEmptyArray(result));
+    await cliente.save();
+    //--------------------------------------------------------------------------------------------------    
 
-    const group = knl.sequelize().models.cliente.build({
-        nomefantasia : req.body.nomefantasia,
-        cnpj : req.body.cnpj,
-        razaosocial : req.body.razaosocial,
-        clientedesde : req.body.clientedesde,
-        cep  : req.body.cep,
-        pais : req.body.pais,
-        estado : req.body.estado,
-        cidade : req.body.cidade,
-        bairro : req.body.bairro,
-        rua : req.body.rua,
-        numero : req.body.numero,
-        complemento : req.body.complemento,
-        status : 1
-    });
+    // Salvando os endereços do cliente
+    //--------------------------------------------------------------------------------------------------
+    if (!req.body.enderecos || !Array.isArray(req.body.enderecos) || req.body.enderecos.length == 0){
+        resp.end();        
+        return;
+    }
 
-    await group.save();
+    for (const element of req.body.enderecos){
+        const endereco = knl.sequelize().models.endereco.build({
+            fkcliente   : cliente.id,
+            cep         : element.cep,
+            pais        : element.pais,
+            estado      : element.estado,
+            cidade      : element.cidade,
+            bairro      : element.bairro,
+            rua         : element.rua,
+            numero      : element.numero,
+            complemento : element.complemento,
+            status      : 1
+        });
+
+        await endereco.save();
+    }
+    //--------------------------------------------------------------------------------------------------
+
     resp.end();
 },securityConsts.USER_TYPE_PUBLIC);
 
@@ -71,6 +75,36 @@ knl.get('cliente', async(req, resp) => {
     resp.json(result); 
 });
 
+knl.get('cliente/:id', async (req, resp) => {
+
+    const clientes = knl.objects.copy(await knl.sequelize().models.cliente.findAll({
+        where : {
+            status : 1,
+            id : req.params.id
+        }
+    }));    
+
+    // Se não veio o cliente desejado
+    if (!clientes || !Array.isArray(clientes) || clientes.length == 0){
+        resp.end();
+        return;
+    }
+
+    const cliente = clientes[0];
+
+    // Efetuamos a busca dos enderecos do cliente
+    const enderecos = knl.objects.copy(await knl.sequelize().models.endereco.findAll({
+        where : {
+            fkcliente : req.params.id,
+            status : 1
+        }
+    }));
+
+    cliente.enderecos = enderecos;
+
+    resp.json(cliente);
+});
+
 knl.patch('cliente/:id', async(req, resp) => {
     const result = await knl.sequelize().models.cliente.update(
         { status : 2 },
@@ -83,13 +117,73 @@ knl.patch('cliente/:id', async(req, resp) => {
     });
 });
 
-knl.put('cliente', async(req, resp) => {
+knl.put('cliente/:id', async(req, resp) => {
+    const schema = Joi.object({
+        cnpj         : Joi.string().min(11).max(14).required(),
+        razaosocial  : Joi.string().min(1).max(100).required(),
+        nomefantasia : Joi.string().min(1).max(100).required(),
+        clientedesde : Joi.string().min(10).max(10).allow(''),
+        enderecos : Joi.array().items(Joi.object({
+            cep : Joi.string().min(8).max(8).allow(''),
+            pais : Joi.string().min(1).max(100).required(),
+            estado : Joi.string().min(1).max(100).required(),
+            cidade : Joi.string().min(1).max(100).required(),
+            bairro : Joi.string().min(1).max(100).required(),
+            rua : Joi.string().min(1).max(100).required(),
+            numero : Joi.string().min(1).max(14).required(),
+            complemento : Joi.string().min(1).max(100).allow('')
+        }))
+    })
+
+    knl.validate(req.body, schema);
+
+    // Salvando os dados do cliente
+    //--------------------------------------------------------------------------------------------------
     const result = await knl.sequelize().models.cliente.update(
+        {
+            cnpj           : req.body.cnpj, 
+            razaosocial    : req.body.razaosocial,
+            nomefantasia   : req.body.nomefantasia,
+            clientedesde   : new Date(),
+            status         : 1
+        },
+        
+        { where : { id : req.params.id }
 
-        { nomefantasia : req.body.nomefantasia,
-        razaosocial : req.body.razaosocial},
+    })
+    //--------------------------------------------------------------------------------------------------    
 
-        {where : { id : req.body.id}}
-    )
-    resp.json(result);
+    // Salvando os endereços do cliente
+    //--------------------------------------------------------------------------------------------------
+    await knl.sequelize().models.endereco.destroy({
+        where : {
+            fkcliente : req.params.id
+        }
+    })
+
+
+    if (!req.body.enderecos || !Array.isArray(req.body.enderecos) || req.body.enderecos.length == 0){
+        resp.end();        
+        return;
+    }
+
+    for (const element of req.body.enderecos){
+        const endereco = knl.sequelize().models.endereco.build({
+            fkcliente   : req.params.id,
+            cep         : element.cep,
+            pais        : element.pais,
+            estado      : element.estado,
+            cidade      : element.cidade,
+            bairro      : element.bairro,
+            rua         : element.rua,
+            numero      : element.numero,
+            complemento : element.complemento,
+            status      : 1
+        });
+
+        await endereco.save();
+    }
+    //--------------------------------------------------------------------------------------------------
+
+    resp.end();
 });

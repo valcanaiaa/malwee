@@ -1,11 +1,15 @@
 const { Sequelize } = require("sequelize");
 
 module.exports = (sequelize) => {
-    sequelize.define('cliente', {
+    sequelize.define('endereco', {
         id : {
             type : Sequelize.INTEGER.UNSIGNED,
             primaryKey : true,
             autoIncrement : true,
+            allowNull : false
+        },
+        fkcliente : {
+            type : Sequelize.INTEGER.UNSIGNED,
             allowNull : false
         },
         cep : {
