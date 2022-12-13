@@ -33,6 +33,8 @@ import { EditarModalClienteComponent } from './editar-modal-cliente/editar-modal
 import { ExcluirModalClienteComponent } from './excluir-modal-cliente/excluir-modal-cliente.component';
 import { ClienteModalComponent } from './cliente-modal/cliente-modal.component';
 import { EnderecoModalComponent } from './endereco-modal/endereco-modal.component';
+import { PedidosComponent } from './pedidos/pedidos.component';
+import { AddModalPedidosComponent } from './add-modal-pedidos/add-modal-pedidos.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,9 @@ import { EnderecoModalComponent } from './endereco-modal/endereco-modal.componen
     EditarModalClienteComponent,
     ExcluirModalClienteComponent,
     ClienteModalComponent,
-    EnderecoModalComponent
+    EnderecoModalComponent,
+    PedidosComponent,
+    AddModalPedidosComponent
   ],
   imports: [
     RoutesModule,
