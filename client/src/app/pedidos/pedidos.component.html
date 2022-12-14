@@ -1,21 +1,24 @@
 <mat-card>
-    <div>
-      <div class="seach-container">
-        <input type="text" id="seacher-bar" placeholder=" Cliente" [(ngModel)]="filterTerm" (input)="filtrar()">
-        <img class="search-icon" src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png">
-        <button  class="adicionar" mat-raised-button color="primary" (click)="adicionarModalProduto()"><mat-icon>add</mat-icon></button>
-      </div>
+  <div>
+    <div class="search-container">
+      <input type="text" id="search-bar" placeholder="Busca" [(ngModel)]="filterTerm" (input)="filtrar()">
+      <img class="search-icon" src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png">
+      <button  class="adicionar" mat-raised-button color="primary" (click)="adicionarModalPedido()"><mat-icon>add</mat-icon></button>
     </div>
+</div>
     <br>
 <table>
   <tr>
-    <th>ID</th>
-    <th>Pedidos</th>
-    <th></th>
+    <th>N° do pedido</th>
+    <th>Cliente</th>
+    <th>Data de Emissão</th>
+    <th>Data de Entrega</th>
+    <th>Endereço</th>
+    <th>Total</th>
   </tr>
-  <tr *ngFor="let produto of produto">
-    <td>{{produto.id}}</td>
-    <td>{{produto.description}}</td>
+  <tr *ngFor="let pedido of pedido">
+    <td>{{pedido.id}}</td>
+    <td>{{pedido.description}}</td>
     <td><button class="deletar" mat-raised-button color="primary" (click)="excluir(produto)">EXCLUIR</button></td>
     <td><button mat-raised-button color="primary" (click)="toggle2()">EDITAR</button></td>
   </tr>

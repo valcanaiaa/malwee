@@ -1,1 +1,71 @@
-<p>add-modal-pedidos works!</p>
+<mat-tab-group>
+    <h2>Adicionar cliente</h2>
+    <mat-tab label="Pedido">
+    <h2>Adicionar um pedido</h2>
+    <mat-form-field>
+        <mat-label>Adicionar pedido</mat-label>
+        <input matInput placeholder="digite aqui" [(ngModel)]="pedido">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Cliente</mat-label>
+        <input matInput placeholder="digite aqui" [(ngModel)]="Fkcliente">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Endereço</mat-label>
+        <input matInput placeholder="digite aqui" [(ngModel)]="Fkendereco">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Dada de Emissão</mat-label>
+        <input matInput placeholder="digite aqui" [(ngModel)]="DataEmissao">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Dada de Entrega</mat-label>
+        <input matInput placeholder="digite aqui" [(ngModel)]="DataEntrega">
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="adicionar()">Adicionar</button>
+    </mat-tab>
+
+    <mat-tab label="Pedido do produto">
+        <h2>Pedido do produto</h2>
+        <mat-form-field>
+          <mat-label>Produto</mat-label>
+          <input matInput placeholder="digite aqui" [(ngModel)]="Produto">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <mat-label>Valor Unitario</mat-label>
+          <input matInput placeholder="digite aqui" [(ngModel)]="valorUnitarioais">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <mat-label>Pedido</mat-label>
+          <input matInput placeholder="digite aqui" [(ngModel)]="Pedido">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <mat-label>Quantidade</mat-label>
+          <input matInput placeholder="digite aqui" [(ngModel)]="Quantidade">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <mat-label>Desconto</mat-label>
+          <input matInput placeholder="digite aqui" [(ngModel)]="Desconto">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <mat-label>Acrescimo</mat-label>
+          <input matInput placeholder="digite aqui" [(ngModel)]="Acrescimo">
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+          <mat-label>Total</mat-label>
+          <input matInput placeholder="digite aqui" [(ngModel)]="Total">
+        </mat-form-field>
+        <br>
+        <button mat-raised-button color="primary" (click)="adicionar()">Adicionar</button>
+      </mat-tab>
+    </mat-tab-group>

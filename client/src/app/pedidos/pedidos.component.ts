@@ -10,9 +10,7 @@ import { AddModalPedidosComponent } from '../add-modal-pedidos/add-modal-pedidos
 })
 
 export class PedidosComponent implements OnInit {
-adicionarModalProduto() {
-throw new Error('Method not implemented.');
-}
+
   pedido: Array<any> = [];
   filterTer : string ='';
   original : Array<any> = [];

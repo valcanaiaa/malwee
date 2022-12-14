@@ -8,7 +8,7 @@ module.exports = (sequelize) => {
             autoIncrement : true,
             allowNull : false
         },
-        Fkcliente : {
+        Fkpedido : {
             type : Sequelize.INTEGER,
             allowNull : false
         },
