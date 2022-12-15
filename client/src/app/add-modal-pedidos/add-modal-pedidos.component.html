@@ -2,11 +2,6 @@
     <h2>Adicionar cliente</h2>
     <mat-tab label="Pedido">
     <h2>Adicionar um pedido</h2>
-    <mat-form-field>
-        <mat-label>Adicionar pedido</mat-label>
-        <input matInput placeholder="digite aqui" [(ngModel)]="pedido">
-      </mat-form-field>
-      <br>
       <mat-form-field>
         <mat-label>Cliente</mat-label>
         <input matInput placeholder="digite aqui" [(ngModel)]="Fkcliente">
@@ -25,6 +20,11 @@
       <mat-form-field>
         <mat-label>Dada de Entrega</mat-label>
         <input matInput placeholder="digite aqui" [(ngModel)]="DataEntrega">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Total</mat-label>
+        <input matInput placeholder="digite aqui" [(ngModel)]="Total">
       </mat-form-field>
       <button mat-raised-button color="primary" (click)="adicionar()">Adicionar</button>
     </mat-tab>

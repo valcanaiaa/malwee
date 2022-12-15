@@ -29,8 +29,8 @@ knl.post("pedido"),async(req, resp) => {
     const pedido = knl.sequelize().models.pedido.build({
         Fkcliente    : req.body.Fkcliente, 
         Fkproduto    : req.body.Fkproduto,
-        DataEmissao  :  new Date(),
-        DataEntrega  : new Date(),
+        DataEmissao  :  req.body.DataEmissao,
+        DataEntrega  : req.body.DataEntrega,
         status       : 1, 
     });
 
@@ -42,7 +42,7 @@ knl.post("pedido"),async(req, resp) => {
 
     for (const element of req.body.pedidos){
         const prodpedidos = knl.sequelize().models.pedidos.build({
-            Fkcliente   : cliente.id,
+            Fkcliente   : element.Fkcliente,
             Fkendereco  : element.Fkendereco,
             DataEmissao : element.DataEmissao,
             DataEntrega : element.DataEntrega,
@@ -50,7 +50,7 @@ knl.post("pedido"),async(req, resp) => {
             status      : 1
         });
 
-        await endereco.save();
+        await prodpedidos.save();
     }
   
 

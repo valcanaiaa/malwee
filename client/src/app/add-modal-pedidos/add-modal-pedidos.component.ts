@@ -20,6 +20,7 @@ export class AddModalPedidosComponent implements OnInit {
   acrescimpo: string = '';
   quantidade: number = 0;
 Fkendereco: any;
+Fkproduto: any;
 Produto: any;
 valorUnitarioais: any;
 Pedido: any;
@@ -28,6 +29,7 @@ Desconto: any;
 Acrescimo: any;
 Total: any;
 
+public pedidos2 : Array<any> =[];
 
   constructor(private httpService : HttpService) { }
 
@@ -35,7 +37,11 @@ Total: any;
   }
 
   async adicionar(){
-    this.pedidos = await this.httpService.post('pedido', {});
+    this.pedidos2.push({"fkCliente" : this.Fkcliente ,"Fkendereco" : this.Fkendereco, "DataEmissao" : this.DataEmissao,
+    "DataEntrega" : this.DataEntrega, "total" : this.Total})
+
+    this.pedidos = await this.httpService.post('pedido', {Fkcliente :this.Fkcliente, Fkproduto : this.Fkproduto,
+      DataEmissao :this.DataEmissao,DataEntrega :this.DataEntrega, pedidos : this.pedidos2});
     console.log(this.pedidos);
   }
   async adicionarpedido(){
